@@ -1,0 +1,29 @@
+{
+  "name": "xiaobanke-recorder",
+  "version": "1.0.0",
+  "description": "xiaobanke  recorder",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "start":"npm run build && electron ./dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notedit/xiaobanke-recorder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/notedit/xiaobanke-recorder/issues"
+  },
+  "homepage": "https://github.com/notedit/xiaobanke-recorder#readme",
+  "dependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/node": "^8.0.53",
+    "electron": "^1.7.9",
+    "typescript": "^2.6.1"
+  },
+  "devDependencies": {
+    "tslint": "^5.8.0"
+  }
+}
