@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start":"npm run build && electron ./dist/main.js"
+    "start": "npm run build && electron ./dist/main.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/notedit/xiaobanke-recorder#readme",
   "dependencies": {
-    "@types/electron": "^1.6.10",
+    "@types/debug": "0.0.30",
     "@types/node": "^8.0.53",
+    "debug": "^3.1.0",
+    "domify": "^1.4.0",
     "electron": "^1.7.9",
     "typescript": "^2.6.1"
   },
