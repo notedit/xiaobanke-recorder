@@ -1,7 +1,9 @@
 import { app, BrowserWindow,ipcMain} from 'electron'
 import * as path from 'path'
 import * as url from 'url'
+import  Logger from './logger'
 
+const log = new Logger()
 
 let mainWindow: Electron.BrowserWindow
 let pickerDialog: Electron.BrowserWindow 
@@ -25,14 +27,14 @@ function createWindow() {
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
-      pathname: path.join(__dirname, "../index.html"),
-      protocol: "file:",
+      pathname: path.join(__dirname, '../index.html'),
+      protocol: 'file:',
       slashes: true,
   }))
 
   pickerDialog.loadURL(url.format({
-      pathname: path.join(__dirname, "../picker.html"),
-      protocol: "file:",
+      pathname: path.join(__dirname, '../picker.html'),
+      protocol: 'file:',
       slashes: true,
   }))
 
@@ -40,12 +42,15 @@ function createWindow() {
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
 
+  pickerDialog.webContents.openDevTools()
+
   // Emitted when the window is closed.
-  mainWindow.on("closed", () => {
+  mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
+    pickerDialog = null
   })
 }
 
@@ -72,16 +77,16 @@ app.on('activate', () => {
 })
 
 
-
-
 ipcMain.on('show-picker', (event,sources) => {
     pickerDialog.show()
     pickerDialog.webContents.send('get-sources',sources)
 })
 
-ipcMain.on('souce-id-selected', (event,souceId) => {
+ipcMain.on('source-id-selected', (event,souceId) => {
+    log.debug('souce-id-selected', souceId)
     pickerDialog.hide()
     mainWindow.webContents.send('source-id-selected', souceId)
+
 })
 
 ipcMain.on('source-selected-esc', (event,options) => {

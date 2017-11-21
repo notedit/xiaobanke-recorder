@@ -1,9 +1,12 @@
 import { desktopCapturer,ipcRenderer,DesktopCapturerSource,SourcesOptions} from 'electron'
 const domify = require('domify')
+import  Logger from './logger'
 
+const log = new Logger()
 
 document.onkeydown = (event) => {
 
+    log.debug('keydown ', event.keyCode)
     if(event.keyCode === 27){
         ipcRenderer.send('source-selected-esc',null)
     }
@@ -26,9 +29,10 @@ ipcRenderer.on('get-sources', (event,options:SourcesOptions) => {
         for (let i = 0; i < links.length; ++i) {
             let closure = (i) => {
                 return (e) => {
-                e.preventDefault()
-                ipcRenderer.send('source-id-selected', sources[i].id)
-                sourcesList.innerHTML = ''
+                    e.preventDefault()
+                    ipcRenderer.send('source-id-selected', sources[i].id)
+                    log.debug('selected ', sources[i].id)
+                    sourcesList.innerHTML = ''
                 }
             }
             links[i].onclick = closure(i)
