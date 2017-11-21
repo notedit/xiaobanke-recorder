@@ -20,6 +20,7 @@
   "dependencies": {
     "@types/debug": "0.0.30",
     "@types/node": "^8.0.53",
+    "bulma": "^0.6.1",
     "debug": "^3.1.0",
     "domify": "^1.4.0",
     "electron": "^1.7.9",

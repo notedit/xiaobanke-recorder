@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Electron Screen Recorder</title>
+    <title>小班课 </title>
     <meta charset="utf-8">
+    <style>
+      body {
+        background: white;
+        display: -webkit-flex;
+        -webkit-justify-content: center;
+        -webkit-align-items: center;
+        -webkit-flex-direction: column;
+      }
+    </style>
     <script>
         // You can also require other files to run in this process
-        require('./dist/app.js')
+        require('./dist/index.js')
     </script>
   </head>
   <body>
-    <video id="video" autoplay></video>
+
     <p>
       <button id="record-desktop">Record Desktop</button>
       <button id="record-window">Record Window</button>
-      <button id="record-camera">Record Camera</button>
-      <button id="play-video">Play Video</button>
       <br><label> <input type="checkbox" id="micro-audio" value="false">Include Microphone Audio</label>
-      <!--<br><label> <input type="checkbox" id="system-audio" value="false">Include System Audio</label>-->
     </p>
-    <button id="record-stop" hidden="true">Stop Recording</button>
+    <button id="record-stop" >Stop Recording</button>
     <p>
-      <button id="play-button" hidden="true">Play Recording</button>
-      <button id="download-button" hidden="true">Download file</button>
+    <button id="download-button" >Download file</button>
     </p>
   </body>
 </html>

@@ -1,28 +1,38 @@
 import { ipcRenderer,remote} from 'electron'
-import * as Debug from 'debug'
+import  Logger from './logger'
 
-const debug = Debug('recorder')
+import * as ddebug from 'debug'
+
+window.localStorage.setItem('debug', '*')
+
+
+const _debug = ddebug('aaaaa')
+
+const log = new Logger()
 
 let localStream:MediaStream
-let recordedChunks = []
+let recordedChunks:any[] = [] 
 let recordedBlob:Blob
-let numRecordedChunks = 0
-let recorder 
+let numRecordedChunks:number= 0
+let recorder:any
 let includeAudio:boolean = true
 let isStarted:boolean = false
 
 document.addEventListener('DOMContentLoaded', () => {
+
     document.querySelector('#record-desktop').addEventListener('click', recordDesktop)
     document.querySelector('#record-window').addEventListener('click', recordWindow)
     document.querySelector('#record-stop').addEventListener('click', stopRecording)
     document.querySelector('#download-button').addEventListener('click', download)
+    
+    log.debug('this is log debug')
 })
 
 declare var MediaRecorder: any 
 
 const recordDesktop = () => {
     if(isStarted){
-        debug('already started, return')
+        log.debug('already started, return')
         return
     }
     cleanRecord()
@@ -32,7 +42,7 @@ const recordDesktop = () => {
 
 const recordWindow = () => {
     if(isStarted){
-        debug('already started, return')
+        log.debug('already started, return')
         return
     }
     cleanRecord()
@@ -42,7 +52,7 @@ const recordWindow = () => {
 
 const stopRecording = () => {
     if(!isStarted){
-        debug('is not started yet, return')
+        log.debug('is not started yet, return')
         return
     }
     if(recorder){
@@ -55,7 +65,7 @@ const stopRecording = () => {
 
 const download =  () => {
     
-    debug('download')
+    log.debug('download')
     let blob = new Blob(recordedChunks, {type: 'video/webm'})
     let url = URL.createObjectURL(blob)
     let a = document.createElement('a')
@@ -76,7 +86,7 @@ const cleanRecord = () => {
 }
 
 ipcRenderer.on('source-id-selected', (event, sourceId:string) => {
-    debug('source-id-selected ', sourceId)
+    log.debug('source-id-selected ', sourceId)
     onSourceSlected(sourceId)
 
 })
@@ -84,7 +94,7 @@ ipcRenderer.on('source-id-selected', (event, sourceId:string) => {
 
 const recorderOnDataAvailable = (event) => {
     if(event.data && event.data.size > 0){
-        debug('recorderOnDataAvailable ',event.data.size)
+        log.debug('recorderOnDataAvailable ',event.data.size)
         recordedChunks.push(event.data)
         numRecordedChunks += event.data.byteLength
     }
@@ -92,9 +102,9 @@ const recorderOnDataAvailable = (event) => {
 
 
 const onSourceSlected = async (sourceId:string):Promise<any> => {
-    debug('sourceId: ' + sourceId)
+    log.debug('sourceId: ' + sourceId)
     if (!sourceId) {
-        debug('Access rejected.')
+        log.debug('Access rejected.')
         return
     }
 
@@ -112,7 +122,7 @@ const onSourceSlected = async (sourceId:string):Promise<any> => {
     
     localStream = stream 
     if(includeAudio){
-        debug('add audio track')
+        log.debug('add audio track')
         let audioStream:MediaStream = await (navigator as any).webkitGetUserMedia({audio:true,video:false})
         localStream.addTrack(audioStream.getAudioTracks()[0])
     }
@@ -120,7 +130,7 @@ const onSourceSlected = async (sourceId:string):Promise<any> => {
     try{
         recorder = new MediaRecorder(stream)
     } catch(err) {
-        debug('error ',err)
+        log.debug('error ',err)
         return
     }
 
@@ -132,10 +142,10 @@ const onSourceSlected = async (sourceId:string):Promise<any> => {
 
     recorder.ondataavailable = recorderOnDataAvailable
     recorder.onstop = () => {
-        debug('recorder stop')
+        log.debug('recorder stop')
     }
     recorder.start()
-    debug('recorder start')
+    log.debug('recorder start')
     return
 }
 
