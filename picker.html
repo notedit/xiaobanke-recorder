@@ -4,32 +4,93 @@
     <title> Xiaobanke Recorder</title>
     <meta charset="utf-8">
     <style>
-        .capturer-list li {
-          list-style-type: none;
-          margin-right: 30px;
-          float: left;
-          /*height: 150px;*/
-        }
+      * { margin: 0; padding: 0 }
 
-        .capturer-list img {
-          border: 1px solid #F7F7F7;
-          height: 98px;
-          width: 150px;
-        }
+      body {
+        background: white;
+        display: -webkit-flex;
+        -webkit-justify-content: center;
+        -webkit-align-items: center;
+        -webkit-flex-direction: column;
+      }
 
-        .capturer-list img:hover {
-          border: 1px solid black;
-        }
-
-        .capturer-list span {
-          display: block;
-          height: 22px;
-          width: 150px;
-        }
-        
-        .cr {
-          overflow: auto;
-        }
+      .record-action-box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        transition: .2s;
+        background-color: #222;
+        border-radius: 8px;
+        z-index: 999;
+      }
+      .select-screen {
+        width: 600px;
+        height: 450px;
+        padding-top: 37px;
+      }
+      .select-screen .subject {
+        width: 540px;
+        height: 45px;
+        font-size: 14px;
+        color: #FFFFFF;
+        text-align: center;
+        line-height: 45px;
+        border-bottom: 1px solid #474747;
+        margin: 0 auto;
+      }
+      .select-screen .screen-con {
+        max-height: 402px;
+        padding-bottom: 40px;
+        overflow-y: auto;
+      }
+      .select-screen .screen-con .screen-main {
+        width: 536px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      .select-screen .screen-con .screen-main .screen-item {
+        float: left;
+        width: 160px;
+        padding: 20px 0 10px 0;
+        margin-right: 28px;
+      }
+      .select-screen .screen-con .screen-main .screen-item .screen {
+        position: relative;
+        height: 120px;
+        background: #fff;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .select-screen .screen-con .screen-main .screen-item .screen img {
+        width: 100%;
+        height: 100%;
+      }
+      .select-screen .screen-con .screen-main .screen-item .screen .select {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: url('./img/select.png') rgba(0, 0, 0, 0.3) center no-repeat;
+        border: 2px solid #7CFBBC;
+        border-radius: 2px;
+      }
+      .select-screen .screen-con .screen-main .screen-item .screen-name {
+        height: 17px;
+        font-size: 12px;
+        line-height: 17px;
+        color: #fff;
+        text-align: center;
+        margin-top: 15px;
+      }
+      .select-screen .screen-con .screen-main .screen-item:nth-child(3n) {
+        margin-right: 0;
+      }
+      .select-screen .screen-con .screen-main .screen-item.active .select {
+        display: block;
+      }
     </style>
     <script>
         // You can also require other files to run in this process
@@ -37,11 +98,45 @@
     </script>
   </head>
 <body>
-<div class="capturer-container dn">
-    <div class="cr">
-    <p class="mbl">Select the window you want to share:</p>
-    <ul class="capturer-list"></ul>
+  <div class="record-action-box">
+    <div class="select-screen">
+      <p class="subject">选择你要录制的窗口</p>
+
+      <div class="screen-con">
+        <ul class="screen-main">
+          <!-- <li class="screen-item active">
+            <div class="screen">
+              <div class="select"></div>
+            </div>
+            <p class="screen-name">窗口一</p>
+          </li>
+          <li class="screen-item">
+            <div class="screen">
+              <div class="select"></div>
+            </div>
+            <p class="screen-name">窗口一</p>
+          </li>
+          <li class="screen-item">
+            <div class="screen">
+              <div class="select"></div>
+            </div>
+            <p class="screen-name">窗口一</p>
+          </li>
+          <li class="screen-item">
+            <div class="screen">
+              <div class="select"></div>
+            </div>
+            <p class="screen-name">窗口一</p>
+          </li>
+          <li class="screen-item">
+            <div class="screen">
+              <div class="select"></div>
+            </div>
+            <p class="screen-name">窗口一</p>
+          </li> -->
+        </ul>
+      </div>
     </div>
-</div>
+  </div>
 </body>
 </html>

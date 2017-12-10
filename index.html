@@ -4,6 +4,7 @@
     <title>小班课 </title>
     <meta charset="utf-8">
     <style>
+      * { margin: 0; padding: 0 }
       body {
         background: white;
         display: -webkit-flex;
@@ -11,15 +12,76 @@
         -webkit-align-items: center;
         -webkit-flex-direction: column;
       }
+
+      .record-action-box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        transition: .2s;
+        background-color: #222;
+        /* border-radius: 8px; */
+        z-index: 999;
+      }
     </style>
+    <link rel="stylesheet" type="text/css" href="./css/set.css">
+    <link rel="stylesheet" type="text/css" href="./css/recording.css">
     <script>
         // You can also require other files to run in this process
         require('./dist/index.js')
     </script>
   </head>
   <body>
+    <div id="action-box" class="record-action-box">
+      <div class="record-set">
+        <div class="options-con">
+          <div class="options-main">
+            <div class="option-item fl">
+              <div id="record-start" class="record-btn"></div>
+              <p class="start-tip">开始录制</p>
+            </div>
+            <div class="option-item fr">
+              <div class="audio-btn" id="micro-audio"></div>
+              <p class="include-audio" id="micro-tip">包含声音</p>
+            </div>
+          </div>
+    
+          <div class="other-set" id="set-btn">
+            <span class="dropdown"></span>
+          </div>
+        </div>
+    
+        <div class="other-set-box" id="set-box" style="display: none;">
+          <div class="other-set-item">
+            <p class="title">画面质量</p>
+            <div class="quality">
+              <div class="select quality-select">
+                1920x1080
+              </div>
+            </div>
+          </div>
+          <div class="other-set-item">
+            <p class="title">保存路径</p>
+            <div class="path">
+              <div class="select path-select">
+                ／desk
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <p>
+    <div id="recording-box" class="record-action-box" style="display: none;">
+      <div class="recording">
+        <div class="recording-box">
+          <div id="record-stop" class="recording-btn"></div>
+          <p class="tip" id="recording-time">00:00:12</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <p>
       <button id="record-desktop">Record Desktop</button>
       <button id="record-window">Record Window</button>
       <br><label> <input type="checkbox" id="micro-audio" value="false">Include Microphone Audio</label>
@@ -27,6 +89,6 @@
     <button id="record-stop" >Stop Recording</button>
     <p>
     <button id="download-button" >Download file</button>
-    </p>
+    </p> -->
   </body>
 </html>

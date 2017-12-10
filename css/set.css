@@ -1,0 +1,120 @@
+.record-set {
+  position: relative;
+  width: 320px;
+  height: 178px;
+}
+.record-set .options-con {
+  position: relative;
+  height: 178px;
+  background-color: #222;
+  /* border-radius: 8px; */
+}
+.record-set .options-main {
+  padding: 0 60px;
+  overflow: hidden;
+}
+.record-set .options-main .option-item {
+  width: 65px;
+  padding-top: 48px;
+}
+.record-set .options-main .option-item .record-btn,
+.record-set .options-main .option-item .audio-btn {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0 auto;
+}
+.record-set .options-main .option-item .record-btn {
+  border: 1px solid #7CFBBC;
+  background: url('../img/video.png') center no-repeat;
+}
+.record-set .options-main .option-item .audio-btn {
+  border: 1px dashed #606060;
+  background: url('../img/audio.png') center no-repeat;
+}
+.record-set .options-main .option-item .start-tip,
+.record-set .options-main .option-item .include-audio {
+  font-size: 12px;
+  line-height: 17px;
+  text-align: center;
+  margin-top: 12px;
+}
+.record-set .options-main .option-item .start-tip {
+  color: #fff;
+}
+.record-set .options-main .option-item .include-audio {
+  color: #7CFBBC;
+}
+.record-set .options-main .option-item.no-include .audio-btn {
+  background: url('../img/audio-disable.png') center no-repeat;
+}
+.record-set .options-main .option-item.no-include .include-audio {
+  color: #999999;
+}
+.record-set .other-set {
+  position: relative;
+  width: 30px;
+  height: 16px;
+  margin: 12px 8px 0;
+  background: url('../img/record-set.png') no-repeat;
+  cursor: pointer;
+}
+.record-set .other-set .dropdown {
+  float: right;
+  width: 6px;
+  height: 5px;
+  margin-top: 6px;
+  background: url('../img/dropdown-record.png') no-repeat;
+}
+.record-set .other-set-box {
+  position: absolute;
+  left: 0;
+  bottom: -178px;
+  width: 318px;
+  height: 176px;
+  padding-top: 10px;
+  background: #5C5C5C;
+  border: 1px solid #B9B9B9;
+  border-radius: 0 0 8px 8px;
+  z-index: -1;
+}
+.record-set .other-set-box .other-set-item {
+  width: 240px;
+  height: 50px;
+  margin: 20px auto 0;
+}
+.record-set .other-set-box .other-set-item .title {
+  height: 17px;
+  font-size: 12px;
+  line-height: 17px;
+  color: #ABABAB;
+  margin-bottom: 8px;
+}
+.record-set .other-set-box .other-set-item .select {
+  height: 24px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 24px;
+  color: #fff;
+  padding-left: 10px;
+  border-radius: 24px;
+}
+.record-set .other-set-box .other-set-item .quality .quality-select {
+  background: url('../img/dropdown-record.png') #454545 no-repeat;
+  background-position: 221px 10px;
+  background-size: 8px 6px;
+}
+.record-set .other-set-box .other-set-item .path .path-select {
+  background: url('../img/file.png') #454545 no-repeat;
+  background-position: 218px 7px;
+  background-size: 13px 10px;
+}
+.fl {
+  float: left;
+  display: inline-block;
+}
+.fr {
+  float: right;
+  display: inline-block;
+}
