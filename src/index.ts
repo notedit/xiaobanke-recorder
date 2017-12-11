@@ -42,8 +42,9 @@ function toggleAudio() {
 }
 
 const toggleSet = () => {
-    const setBox = document.getElementById("set-box");
-    setBox.style.display = setBox.style.display === "none" ? "block" : "none";
+    // const setBox = document.getElementById("set-box");
+    // setBox.style.display = setBox.style.display === "none" ? "block" : "none";
+    ipcRenderer.send("toggle-set");
 };
 
 const recordStart = () => {

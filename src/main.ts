@@ -74,6 +74,17 @@ app.on("activate", () => {
   }
 });
 
+ipcMain.on("toggle-set", (event) => {
+  const { x, y, width, height } = mainWindow.getBounds();
+  mainWindow.setBounds({
+    x,
+    y,
+    width,
+    height: height !== 200 ? 200 : 375,
+  }, true);
+
+});
+
 ipcMain.on("show-picker", (event, sources) => {
     pickerDialog.show();
     pickerDialog.webContents.send("get-sources", sources);
@@ -82,6 +93,13 @@ ipcMain.on("show-picker", (event, sources) => {
 ipcMain.on("source-id-selected", (event, souceId) => {
     log.debug("souce-id-selected", souceId);
     pickerDialog.hide();
+    const { x, y, width, height } = mainWindow.getBounds();
+    mainWindow.setBounds({
+      x,
+      y,
+      width,
+      height: 200,
+    }, true);
     mainWindow.webContents.send("source-id-selected", souceId);
 
 });
